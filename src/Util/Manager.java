@@ -10,6 +10,9 @@ import Commands.show;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Класс Manager управляет выполнением команд.
+ */
 public class Manager {
     private static final Map<String, Command> commands = new HashMap<>();
 
@@ -21,9 +24,13 @@ public class Manager {
         commands.put("SHOW", new show());
     }
 
+    /**
+     * Выполняет команду по ее названию.
+     * @param commandLine строка с названием команды
+     */
     public static void executeCommand(String commandLine) {
         if (!commandLine.equalsIgnoreCase("INSERT")) {
-            CommandScanner.disableInputMode(); // ✅ Любая команда выключает `isInputMode`
+            CommandScanner.disableInputMode(); // Отключаем ввод данных
         }
 
         Command command = commands.get(commandLine.toUpperCase());
@@ -33,5 +40,14 @@ public class Manager {
             System.out.println("Неизвестная команда. Введите 'help' для списка команд.");
         }
     }
+
+    /**
+     * Возвращает список всех зарегистрированных команд.
+     * @return Map с командами
+     */
+    public static Map<String, Command> getCommands() {
+        return commands;
+    }
 }
+
 

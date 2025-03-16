@@ -1,23 +1,36 @@
 package Commands;
 
-// 2. Абстрактный суперкласс - реализует базовую функциональность
+/**
+ * Абстрактный класс для всех команд.
+ * Каждая команда имеет имя и описание.
+ */
 public abstract class AbstractCommand implements Command {
-    protected String name; // Название команды
-    protected String description; // Описание команды
+    private final String name;
+    private final String description;
 
     public AbstractCommand(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
+    /**
+     * Возвращает название команды.
+     * @return строка с названием команды
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Возвращает описание команды.
+     * @return строка с описанием команды
+     */
     public String getDescription() {
         return description;
     }
 
-    @Override
-    public abstract void execute(String[] args); // Оставляем реализацию для наследников
+    /**
+     * Метод, который должны реализовать все команды.
+     */
+    public abstract void execute(String[] args);
 }
