@@ -1,15 +1,26 @@
 package Commands;
 
 import Util.CommandScanner;
+import Util.CollectionManager;
 
-// Команда Info - выводит информацию о программе
+/**
+ * Команда "info" - выводит информацию о коллекции.
+ */
 public class info extends AbstractCommand {
     public info() {
-        super("info","");
+        super("info", "Вывести информацию о коллекции");
     }
+
+    /**
+     * Выполняет команду "info".
+     * Отключает режим ввода данных (если был активен) и выводит сведения о коллекции.
+     */
     @Override
     public void execute(String[] args) {
-        CommandScanner.disableInputMode();
-        System.out.println("Пока не знаю что сюда вписать");
+        CommandScanner.disableInputMode(); // Отключаем режим ввода, если был включен
+        System.out.println("📌 Информация о коллекции:");
+        System.out.println("   - Тип коллекции: " + CollectionManager.getCollectionType());
+        System.out.println("   - Дата инициализации: " + CollectionManager.getInitializationDate());
+        System.out.println("   - Количество элементов: " + CollectionManager.getSize());
     }
 }
