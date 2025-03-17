@@ -34,7 +34,7 @@ public class help extends AbstractCommand {
             System.out.println("Список доступных команд:");
             for (Map.Entry<String, Command> entry : Manager.getCommands().entrySet()) {
                 Command command = entry.getValue();
-                System.out.println("   - " + command.getName() + " : " + command.getDescription());
+                System.out.println("   - " + command.getName() + " --- " + command.getDescription());
             }
         }
     }

@@ -4,7 +4,6 @@ import Collection.Person;
 import Util.CommandScanner;
 import Util.CollectionManager;
 import Util.CreatePerson;
-
 import java.util.Scanner;
 
 public class insertnull extends AbstractCommand {
@@ -27,7 +26,7 @@ public class insertnull extends AbstractCommand {
             System.out.println("Ввод данных отменен.");
         }
 
-        CommandScanner.disableInputMode(); //  `insert` сам выключает `isInputMode`
+        CommandScanner.disableInputMode();
     }
 }
 

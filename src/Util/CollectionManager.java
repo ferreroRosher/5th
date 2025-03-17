@@ -25,6 +25,17 @@ public class CollectionManager {
     public static void addPerson(Person person) {
         personCollection.put(nextId++, person);
     }
+    /**
+     * Удаляет элемент по ключу.
+     * @param key ID элемента
+     */
+    public static boolean removeByKey(int key) {
+        if (personCollection.containsKey(key)) {
+            personCollection.remove(key);
+            return true; // Успешное удаление
+        }
+        return false; // Такого ключа нет
+    }
 
     /**
      * Возвращает всю коллекцию объектов Person.

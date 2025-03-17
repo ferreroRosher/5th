@@ -1,11 +1,6 @@
 package Util;
 
-import Commands.Command;
-import Commands.exit;
-import Commands.help;
-import Commands.info;
-import Commands.insertnull;
-import Commands.show;
+import Commands.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +17,7 @@ public class Manager {
         commands.put("EXIT", new exit());
         commands.put("INSERT", new insertnull());
         commands.put("SHOW", new show());
+        commands.put("REMOVE_KEY", new remove_keynull());
     }
 
     /**
@@ -40,7 +36,6 @@ public class Manager {
             System.out.println("Неизвестная команда. Введите 'help' для списка команд.");
         }
     }
-
     /**
      * Возвращает список всех зарегистрированных команд.
      * @return Map с командами
