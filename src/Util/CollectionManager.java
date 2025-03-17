@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -23,6 +24,7 @@ public class CollectionManager {
                 .filter(person -> person.getNationality().isLessThan(nationality)) // ✅ Используем метод из Country
                 .collect(Collectors.toList());
     }
+
     // Дата инициализации коллекции
     private static final LocalDateTime initializationDate = LocalDateTime.now();
 
@@ -116,6 +118,11 @@ public class CollectionManager {
      */
     public static LocalDateTime getInitializationDate() {
         return initializationDate;
+    }
+    public static Set<Country> getUniqueNationalities() {
+        return personCollection.values().stream()
+                .map(Person::getNationality) // ✅ Извлекаем nationality из Person
+                .collect(Collectors.toSet()); // ✅ Собираем в Set (уникальные значения)
     }
 }
 

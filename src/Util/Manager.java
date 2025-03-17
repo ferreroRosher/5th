@@ -20,6 +20,7 @@ public class Manager {
         commands.put("REMOVE_KEY", new remove_keynull());
         commands.put("REMOVE_LOWER_KEY", new remove_lower_key());
         commands.put("FILTER_LESS_THAN_NATIONALITY", new filter_less_than_nationality());
+        commands.put("PRINT_UNIQUE_NATIONALITY", new print_unique_nationality());
     }
 
     /**
