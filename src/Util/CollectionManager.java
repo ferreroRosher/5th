@@ -4,7 +4,9 @@ import Collection.Person;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Класс для управления коллекцией объектов Person.
@@ -35,6 +37,39 @@ public class CollectionManager {
             return true; // Успешное удаление
         }
         return false; // Такого ключа нет
+    }
+    /**
+     * Удаляет все элементы, id которых меньше указанного.
+     * @param key id, относительно которого будет удаление
+     * @return количество удаленных элементов
+     */
+    public static int removeLower(int key) {
+        List<Integer> toRemove = personCollection.values().stream()
+                .filter(person -> person.getId() < key) // ✅ Фильтруем объекты
+                .sorted() // ✅ Сортируем по ID (использует compareTo())
+                .map(Person::getId)
+                .toList();
+
+        toRemove.forEach(personCollection::remove); // ✅ Удаляем отфильтрованные объекты
+        return toRemove.size();
+    }
+    public static int removeLowerKey(int key) {
+        List<Integer> toRemove = personCollection.keySet().stream()
+                .filter(id -> id < key) // ✅ Фильтруем элементы с id < key
+                .toList();
+
+        toRemove.forEach(personCollection::remove); // ✅ Удаляем найденные объекты
+        return toRemove.size();
+    }
+
+    /**
+     * Возвращает коллекцию элементов в отсортированном порядке.
+     * @return List отсортированных Person
+     */
+    public static List<Person> getSortedCollection() {
+        return personCollection.values().stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     /**

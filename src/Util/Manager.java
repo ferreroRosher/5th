@@ -18,6 +18,7 @@ public class Manager {
         commands.put("INSERT", new insertnull());
         commands.put("SHOW", new show());
         commands.put("REMOVE_KEY", new remove_keynull());
+        commands.put("REMOVE_LOWER_KEY", new remove_lower_key());
     }
 
     /**

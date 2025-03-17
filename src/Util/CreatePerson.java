@@ -153,7 +153,8 @@ import java.util.Set;
 
 public class CreatePerson {
 
-    private static final Set<String> COMMANDS = Set.of("HELP", "INFO", "EXIT", "SHOW", "CLEAR");
+    private static final Set<String> COMMANDS = Set.of("HELP", "INFO", "EXIT", "SHOW", "CLEAR","REMOVE_KEY");
+    private static int nextId = 1;
 
     public static Person createPersonFromInput(Scanner scanner) {
         if (scanner == null) throw new IllegalArgumentException("Ошибка: Scanner не может быть null.");
@@ -188,7 +189,7 @@ public class CreatePerson {
         double locX = getNextValidDouble("Введите координату X локации: ", iterator, scanner);
         if (locX == Double.MIN_VALUE) return null;
 
-        Double locY = getNextValidDouble("Введите координату Y локации (не может быть null): ", iterator, scanner);
+        double locY = getNextValidDouble("Введите координату Y локации (не может быть null): ", iterator, scanner);
         if (locY == Double.MIN_VALUE) return null;
 
         Integer locZ = getNextValidInteger("Введите координату Z локации: ", iterator, scanner, Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -200,7 +201,8 @@ public class CreatePerson {
         Location location = new Location(locX, locY, locZ, locName);
 
         CommandScanner.disableInputMode();
-        return new Person(name, coordinates, height, birthday, passportID, nationality, location);
+        Integer id = generateUniqueID();
+        return new Person(id, name, coordinates, height, birthday, passportID, nationality, location);
     }
 
     private static String getNextValidString(String prompt, Iterator<String> iterator, Scanner scanner,
@@ -312,6 +314,9 @@ public class CreatePerson {
             }
         }
         return Double.MIN_VALUE;
+    }
+    public static int generateUniqueID() {
+        return nextId++;
     }
 }
 
