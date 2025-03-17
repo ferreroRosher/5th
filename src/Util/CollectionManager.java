@@ -1,5 +1,6 @@
 package Util;
 
+import Collection.Country;
 import Collection.Person;
 
 import java.time.LocalDateTime;
@@ -15,8 +16,13 @@ import java.util.stream.Collectors;
 public class CollectionManager {
     // Коллекция для хранения объектов Person, ключ - уникальный ID
     private static final Map<Integer, Person> personCollection = new LinkedHashMap<>();
-    private static int nextId = 1; // Уникальный идентификатор для новых элементов
-
+    private static int nextId = 1;
+    // Уникальный идентификатор для новых элементов
+    public static List<Person> filterLessThanNationality(Country nationality) {
+        return personCollection.values().stream()
+                .filter(person -> person.getNationality().isLessThan(nationality)) // ✅ Используем метод из Country
+                .collect(Collectors.toList());
+    }
     // Дата инициализации коллекции
     private static final LocalDateTime initializationDate = LocalDateTime.now();
 
