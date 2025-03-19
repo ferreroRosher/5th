@@ -1,6 +1,4 @@
 package Collection;
-
-import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 /**
@@ -10,11 +8,13 @@ import java.time.ZonedDateTime;
 public class Person implements Comparable<Person> {
     private final Integer id;
     private final Country nationality;
+    private final String passportID;
 
     public Person(Integer id, String name, Coordinates coordinates, long height, ZonedDateTime birthday,
                   String passportID, Country nationality, Location location) {
         this.id = id;
         this.nationality = nationality;
+        this.passportID = passportID;
     }
 
     /**
@@ -36,6 +36,9 @@ public class Person implements Comparable<Person> {
     public Country getNationality() {
         return nationality;
     }
+    public String getPassportID() {
+        return passportID;
+    } //вернуть значение паспорта для сортировки (сраная сортировка)
 }
 
 

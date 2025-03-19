@@ -4,7 +4,7 @@ import Util.CommandScanner;
 
 public class exit extends AbstractCommand {
     public exit() {
-        super("exit", "");
+        super("exit", "Выйти из команды");
     }
 
     @Override

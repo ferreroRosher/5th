@@ -19,14 +19,15 @@ public class Manager {
         commands.put("SHOW", new show());
         commands.put("REMOVE_KEY", new remove_keynull());
         commands.put("REMOVE_LOWER_KEY", new remove_lower_key());
+        commands.put("REMOVE_GREATER_KEY", new remove_greater_key());
         commands.put("FILTER_LESS_THAN_NATIONALITY", new filter_less_than_nationality());
         commands.put("PRINT_UNIQUE_NATIONALITY", new print_unique_nationality());
+        commands.put("PRINT_FIELD_ASCENDING_PASSPORT_ID", new print_field_ascending_passport_id());
+        commands.put("", new WaitForEmptyInput());
     }
 
-    /**
-     * Выполняет команду по ее названию.
-     * @param commandLine строка с названием команды
-     */
+
+    //* Строка с названием команды
     public static void executeCommand(String commandLine) {
         if (!commandLine.equalsIgnoreCase("INSERT")) {
             CommandScanner.disableInputMode(); // Отключаем ввод данных

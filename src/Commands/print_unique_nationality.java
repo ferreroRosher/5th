@@ -13,8 +13,7 @@ public class print_unique_nationality extends AbstractCommand {
         super("print_unique_nationality", "Вывести уникальные значения nationality всех элементов в коллекции");
     }
 
-    /**
-     * Выполняет команду "print_unique_nationality".
+    /*
      * Выводит уникальные значения nationality в коллекции.
      */
     @Override
@@ -23,9 +22,9 @@ public class print_unique_nationality extends AbstractCommand {
 
         Set<Country> uniqueNationalities = CollectionManager.getUniqueNationalities();
         if (uniqueNationalities.isEmpty()) {
-            System.out.println("⚠️ Коллекция пуста, уникальные nationality отсутствуют.");
+            System.out.println("Коллекция пуста, уникальные nationality отсутствуют.");
         } else {
-            System.out.println("✅ Уникальные nationality:");
+            System.out.println("Уникальные nationality:");
             uniqueNationalities.forEach(System.out::println);
         }
     }

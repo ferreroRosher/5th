@@ -24,9 +24,6 @@ public class Location {
         this.name = name;
     }
 
-    public double getX() { return x; }
-    public Double getY() { return y; }
-    public Integer getZ() { return z; }
     public String getName() { return name; }
 
     @Override

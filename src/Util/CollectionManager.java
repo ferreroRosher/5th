@@ -10,10 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Класс для управления коллекцией объектов Person.
- * Хранит элементы в LinkedHashMap, сохраняя порядок добавления.
- */
+
 public class CollectionManager {
     // Коллекция для хранения объектов Person, ключ - уникальный ID
     private static final Map<Integer, Person> personCollection = new LinkedHashMap<>();
@@ -21,7 +18,13 @@ public class CollectionManager {
     // Уникальный идентификатор для новых элементов
     public static List<Person> filterLessThanNationality(Country nationality) {
         return personCollection.values().stream()
-                .filter(person -> person.getNationality().isLessThan(nationality)) // ✅ Используем метод из Country
+                .filter(person -> person.getNationality().isLessThan(nationality)) //Используем метод из Country
+                .collect(Collectors.toList());
+    }
+    public static List<String> getSortedPassportID() {
+        return personCollection.values().stream()
+                .map(Person::getPassportID) // Извлекаем passportID
+                .sorted() // Сортируем по алфавиту
                 .collect(Collectors.toList());
     }
 
@@ -30,55 +33,47 @@ public class CollectionManager {
 
     /**
      * Добавляет нового человека в коллекцию с автоматическим ID.
-     * @param person объект Person для добавления
      */
     public static void addPerson(Person person) {
         personCollection.put(nextId++, person);
     }
-    /**
+    /*
      * Удаляет элемент по ключу.
-     * @param key ID элемента
      */
     public static boolean removeByKey(int key) {
         if (personCollection.containsKey(key)) {
             personCollection.remove(key);
-            return true; // Успешное удаление
+            return true;
         }
-        return false; // Такого ключа нет
+        return false;
     }
     /**
      * Удаляет все элементы, id которых меньше указанного.
-     * @param key id, относительно которого будет удаление
-     * @return количество удаленных элементов
      */
-    public static int removeLower(int key) {
+    public static int removeLower(Person person) {
         List<Integer> toRemove = personCollection.values().stream()
-                .filter(person -> person.getId() < key) // ✅ Фильтруем объекты
-                .sorted() // ✅ Сортируем по ID (использует compareTo())
+                .filter(p -> p.compareTo(person) < 0)
                 .map(Person::getId)
                 .toList();
 
-        toRemove.forEach(personCollection::remove); // ✅ Удаляем отфильтрованные объекты
+        toRemove.forEach(personCollection::remove);
         return toRemove.size();
     }
-    public static int removeLowerKey(int key) {
+    public static int removeGreaterKey(int key) {
         List<Integer> toRemove = personCollection.keySet().stream()
-                .filter(id -> id < key) // ✅ Фильтруем элементы с id < key
+                .filter(id -> id > key)
                 .toList();
 
-        toRemove.forEach(personCollection::remove); // ✅ Удаляем найденные объекты
+        toRemove.forEach(personCollection::remove);
         return toRemove.size();
     }
 
-    /**
-     * Возвращает коллекцию элементов в отсортированном порядке.
-     * @return List отсортированных Person
-     */
-    public static List<Person> getSortedCollection() {
+
+    /* public static List<Person> getSortedCollection() {
         return personCollection.values().stream()
                 .sorted()
                 .collect(Collectors.toList());
-    }
+    } Cортировать человеков, проверить, что исполняется без этого*/
 
     /**
      * Возвращает всю коллекцию объектов Person.
@@ -121,8 +116,8 @@ public class CollectionManager {
     }
     public static Set<Country> getUniqueNationalities() {
         return personCollection.values().stream()
-                .map(Person::getNationality) // ✅ Извлекаем nationality из Person
-                .collect(Collectors.toSet()); // ✅ Собираем в Set (уникальные значения)
+                .map(Person::getNationality) //Извлекаем nationality из Person
+                .collect(Collectors.toSet()); //Собираем в Set (уникальные значения)
     }
 }
 

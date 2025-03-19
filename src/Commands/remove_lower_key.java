@@ -1,41 +1,41 @@
 package Commands;
 
 import Util.CollectionManager;
+import Util.CreatePerson;
 import Util.CommandScanner;
+import Collection.Person;
 import java.util.Scanner;
 
 /**
- * Команда "remove_lower_key" - удаляет из коллекции все элементы, id которых меньше заданного.
+ * Команда "remove_lower" - удаляет из коллекции все элементы, меньшие, чем заданный.
  */
 public class remove_lower_key extends AbstractCommand {
     public remove_lower_key() {
-        super("remove_lower_key", "Удалить из коллекции все элементы, id которых меньше указанного");
+        super("remove_lower", "Удалить из коллекции все элементы, меньшие, чем заданный");
     }
 
     /**
-     * Выполняет команду "remove_lower_key".
-     * Запрашивает id у пользователя, проверяет, и удаляет все элементы с меньшим id.
+     * Выполняет команду "remove_lower".
+     * Запрашивает объект Person у пользователя, проверяет, и удаляет все меньшие элементы.
      */
     @Override
     public void execute(String[] args) {
         CommandScanner.disableInputMode();
-
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите id, меньше которого все элементы будут удалены: ");
 
-        int id;
-        try {
-            id = Integer.parseInt(scanner.nextLine().trim());
-        } catch (NumberFormatException e) {
-            System.out.println("Ошибка: id должен быть целым числом.");
+        System.out.println("Введите объект Person, относительно которого будут удалены элементы:");
+        Person person = CreatePerson.createPersonFromInput(scanner);
+
+        if (person == null) {
+            System.out.println("Ошибка: не удалось создать объект.");
             return;
         }
 
-        int removedCount = CollectionManager.removeLowerKey(id);
+        int removedCount = CollectionManager.removeLower(person);
         if (removedCount > 0) {
-            System.out.println("✅ Удалено элементов: " + removedCount);
+            System.out.println("Удалено элементов: " + removedCount);
         } else {
-            System.out.println("⚠️ Нет элементов с id меньше " + id);
+            System.out.println("Нет элементов, меньших чем заданный.");
         }
     }
 }

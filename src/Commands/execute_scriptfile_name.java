@@ -1,4 +1,4 @@
 package Commands;
 
-public class execute_scriptfile_name {
+public class Execute_scriptfile_name {
 }

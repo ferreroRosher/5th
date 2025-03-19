@@ -175,7 +175,7 @@ public class CreatePerson {
 
         Coordinates coordinates = new Coordinates(x, y);
 
-        long height = getNextValidLong("Введите рост (> 0): ", iterator, scanner, 1);
+        long height = getNextValidLong("Введите рост (> 1): ", iterator, scanner, 1);
         if (height == Long.MIN_VALUE) return null;
 
         ZonedDateTime birthday = ZonedDateTime.now(); //  Временная заглушка
