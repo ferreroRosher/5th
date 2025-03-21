@@ -12,7 +12,7 @@ public class WaitForEmptyInput extends AbstractCommand {
     private static final int MAX_EMPTY_INPUTS = 2;
 
     public WaitForEmptyInput() {
-        super("???", "Отслеживает три подряд пустых ввода и выполняет действие");
+        super("???", "");
     }
 
     @Override

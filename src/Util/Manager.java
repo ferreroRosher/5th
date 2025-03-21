@@ -1,7 +1,6 @@
 package Util;
 
 import Commands.*;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,10 +11,9 @@ public class Manager {
     private static final Map<String, Command> commands = new HashMap<>();
 
     static {
-        commands.put("HELP", new help());
+        commands.put("HELP", new Help());
         commands.put("INFO", new info());
         commands.put("EXIT", new exit());
-        commands.put("INSERT", new insertnull());
         commands.put("SHOW", new show());
         commands.put("REMOVE_KEY", new remove_keynull());
         commands.put("REMOVE_LOWER_KEY", new remove_lower_key());
@@ -26,8 +24,20 @@ public class Manager {
         commands.put("", new WaitForEmptyInput());
     }
 
+    public static void enableWordleMode() {
+        commands.put("WORDLE", new Wordle());
+    }
 
-    //* Строка с названием команды
+    public static void unlockInsert() {
+        if (!commands.containsKey("INSERT")) {
+            commands.put("INSERT", new insertnull());
+        }
+    }
+
+    public static void removeCommand(String command) {
+        commands.remove(command);
+    }
+
     public static void executeCommand(String commandLine) {
         if (!commandLine.equalsIgnoreCase("INSERT")) {
             CommandScanner.disableInputMode(); // Отключаем ввод данных
@@ -40,6 +50,7 @@ public class Manager {
             System.out.println("Неизвестная команда. Введите 'help' для списка команд.");
         }
     }
+
     /**
      * Возвращает список всех зарегистрированных команд.
      * @return Map с командами
@@ -48,5 +59,4 @@ public class Manager {
         return commands;
     }
 }
-
 

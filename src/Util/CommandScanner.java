@@ -1,25 +1,38 @@
 package Util;
 
-import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.NoSuchElementException;
 
 public class CommandScanner {
-    private static boolean isInputMode = false; // Флаг режима ввода
+    private static boolean isInputMode = false;
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void startInteractiveMode() {
+        System.out.println("Хотите включить режим Wordle для разблокировки скрытой команды? (y/n): ");
+        String response = scanner.nextLine().trim().toLowerCase();
+        if (response.equals("y")) {
+            Manager.enableWordleMode();
+            System.out.println("Режим Wordle активирован! Введите WORDLE, чтобы начать игру.");
+        } else {
+            Manager.unlockInsert(); // Разблокируем insert сразу, если Wordle не активирован
+        }
+
         while (true) {
             System.out.print("> ");
             try {
-                if (!scanner.hasNextLine()) {
-                    System.out.println("Обнаружено завершение ввода (Ctrl+D)");
-                    return; // Завершаем метод, чтобы выйти из режима ожидания, но не завершать программу
+                String commandLine = readLine();
+                if (commandLine == null) {
+                    continue;
                 }
-                String commandLine = scanner.nextLine().trim().toUpperCase();
                 Manager.executeCommand(commandLine);
+
+                // Если INSERT разблокирован, удаляем WORDLE
+                if (Manager.getCommands().containsKey("INSERT")) {
+                    Manager.removeCommand("WORDLE");
+                }
             } catch (NoSuchElementException e) {
-                System.out.println("Обнаружено завершение ввода (Ctrl+D)");
-                return;
+                System.out.println("");
+                break;
             }
         }
     }
@@ -35,17 +48,25 @@ public class CommandScanner {
     public static boolean isInputMode() {
         return isInputMode;
     }
+
     public static String nextLine() {
+        return readLine();
+    }
+
+    private static String readLine() {
         try {
+            if (!scanner.hasNextLine()) {
+                System.out.println("");
+                disableInputMode();
+            }
             return scanner.nextLine();
         } catch (NoSuchElementException e) {
-            System.out.println();
+            System.out.println("");
             disableInputMode();
-            return ""; // Возвращаем пустую строку, чтобы вызывающий код мог обработать это
+            scanner.nextLine();
+            return null;
         }
     }
 }
-
-
 
 
