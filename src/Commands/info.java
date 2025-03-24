@@ -6,8 +6,8 @@ import Util.CollectionManager;
 /**
  * Команда "info" - выводит информацию о коллекции.
  */
-public class info extends AbstractCommand {
-    public info() {
+public class Info extends AbstractCommand {
+    public Info() {
         super("info", "Вывести информацию о коллекции");
     }
 

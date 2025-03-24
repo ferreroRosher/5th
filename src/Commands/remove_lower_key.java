@@ -13,11 +13,7 @@ public class remove_lower_key extends AbstractCommand {
     public remove_lower_key() {
         super("remove_lower", "Удалить из коллекции все элементы, меньшие, чем заданный");
     }
-
-    /**
-     * Выполняет команду "remove_lower".
-     * Запрашивает объект Person у пользователя, проверяет, и удаляет все меньшие элементы.
-     */
+    //Запрашивает объект Person у пользователя, проверяет, и удаляет все меньшие элементы.
     @Override
     public void execute(String[] args) {
         CommandScanner.disableInputMode();
@@ -25,11 +21,6 @@ public class remove_lower_key extends AbstractCommand {
 
         System.out.println("Введите объект Person, относительно которого будут удалены элементы:");
         Person person = CreatePerson.createPersonFromInput(scanner);
-
-        if (person == null) {
-            System.out.println("Ошибка: не удалось создать объект.");
-            return;
-        }
 
         int removedCount = CollectionManager.removeLower(person);
         if (removedCount > 0) {

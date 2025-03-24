@@ -5,20 +5,16 @@ package Collection;
     private float y; //Значение поля должно быть больше -983
 }*/
 
-public class Coordinates {
-    private final Integer x; // ≤ 369, не null
-    private final float y; // > -983
-
-    public Coordinates(Integer x, float y) {
+/**
+ * @param x ≤ 369, не null
+ * @param y > -983
+ */
+public record Coordinates(Integer x, float y) {
+    public Coordinates {
         if (x == null || x > 369) throw new IllegalArgumentException("Координата x должна быть ≤ 369.");
         if (y <= -983) throw new IllegalArgumentException("Координата y должна быть больше -983.");
 
-        this.x = x;
-        this.y = y;
     }
-
-    public Integer getX() { return x; }
-    public float getY() { return y; }
 
     @Override
     public String toString() {

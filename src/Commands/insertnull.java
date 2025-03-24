@@ -6,8 +6,8 @@ import Util.CollectionManager;
 import Util.CreatePerson;
 import java.util.Scanner;
 
-public class insertnull extends AbstractCommand {
-    public insertnull() {
+public class Insert extends AbstractCommand {
+    public Insertnull() {
         super("insert", "Добавить элемент в коллекцию");
     }
 

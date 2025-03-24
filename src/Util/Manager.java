@@ -12,8 +12,8 @@ public class Manager {
 
     static {
         commands.put("HELP", new Help());
-        commands.put("INFO", new info());
-        commands.put("EXIT", new exit());
+        commands.put("INFO", new Info());
+        commands.put("EXIT", new Exit());
         commands.put("SHOW", new show());
         commands.put("REMOVE_KEY", new remove_keynull());
         commands.put("REMOVE_LOWER_KEY", new remove_lower_key());
@@ -30,7 +30,7 @@ public class Manager {
 
     public static void unlockInsert() {
         if (!commands.containsKey("INSERT")) {
-            commands.put("INSERT", new insertnull());
+            commands.put("INSERT", new Insertnull());
         }
     }
 

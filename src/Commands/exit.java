@@ -2,8 +2,8 @@ package Commands;
 
 import Util.CommandScanner;
 
-public class exit extends AbstractCommand {
-    public exit() {
+public class Exit extends AbstractCommand {
+    public Exit() {
         super("exit", "Выйти из команды");
     }
 

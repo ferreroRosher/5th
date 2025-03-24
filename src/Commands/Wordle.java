@@ -9,7 +9,7 @@ public class Wordle extends AbstractCommand {
     private static boolean isUnlocked = false;
 
     public Wordle() {
-        super("WORDLE", "Начать игру для разблокировки скрытой команды");
+        super("Wordle", "Начать игру для разблокировки скрытой команды");
     }
 
     @Override
@@ -17,6 +17,7 @@ public class Wordle extends AbstractCommand {
         if (isUnlocked) {
             System.out.println("Вы уже разблокировали скрытую команду!");
             return;
+            //Нужно ли?
         }
 
         Scanner scanner = new Scanner(System.in);
