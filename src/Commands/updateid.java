@@ -16,7 +16,7 @@ public class UpdateId extends AbstractCommand {
     @Override
     public void execute(String[] args) {
         if (args == null || args.length == 0) {
-            System.out.println("⚠ Пожалуйста, укажите ID для обновления.");
+            System.out.println("Пожалуйста, укажите ID для обновления.");
             return;
         }
 
@@ -36,7 +36,7 @@ public class UpdateId extends AbstractCommand {
 
             // заменяем по ключу
             collection.put(id, updatedPerson);
-            System.out.println("✅ Элемент успешно обновлён.");
+            System.out.println("Элемент успешно обновлён.");
 
         } catch (NumberFormatException e) {
             System.out.println("Неверный формат ID. Укажите целое число.");
