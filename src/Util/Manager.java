@@ -13,7 +13,7 @@ public class Manager {
         commands.put("EXIT", new Exit());
         commands.put("SHOW", new Show());
         commands.put("REMOVE_KEY", new remove_keynull());
-        commands.put("REMOVE_LOWER_KEY", new remove_lower_key());
+        commands.put("REMOVELOWERKEY", new RemoveLower());
         commands.put("REMOVE_GREATER_KEY", new remove_greater_key());
         commands.put("FILTER_LESS_THAN_NATIONALITY", new filter_less_than_nationality());
         commands.put("PRINT_UNIQUE_NATIONALITY", new print_unique_nationality());

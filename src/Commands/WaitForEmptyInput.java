@@ -22,7 +22,7 @@ public class WaitForEmptyInput extends AbstractCommand {
         emptyInputCount = 0;
 
         while (CommandScanner.isInputMode()) {
-            String input = CommandScanner.nextLine().trim();
+            String input = CommandScanner.readLine().trim();
 
             if (!input.isEmpty()) {
                 System.out.println("");

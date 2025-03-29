@@ -7,6 +7,7 @@ public class Main {
         System.out.println("Hello world! " + name);
          */
         // Главный класс - точка входа в программу
+
         System.out.println("Введите 'help' для списка команд");
         CommandScanner.startInteractiveMode();
     }
