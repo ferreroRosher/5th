@@ -4,9 +4,6 @@ import Commands.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Класс Manager управляет выполнением команд.
- */
 public class Manager {
     private static final Map<String, Command> commands = new HashMap<>();
 
@@ -14,14 +11,17 @@ public class Manager {
         commands.put("HELP", new Help());
         commands.put("INFO", new Info());
         commands.put("EXIT", new Exit());
-        commands.put("SHOW", new show());
+        commands.put("SHOW", new Show());
         commands.put("REMOVE_KEY", new remove_keynull());
         commands.put("REMOVE_LOWER_KEY", new remove_lower_key());
         commands.put("REMOVE_GREATER_KEY", new remove_greater_key());
         commands.put("FILTER_LESS_THAN_NATIONALITY", new filter_less_than_nationality());
         commands.put("PRINT_UNIQUE_NATIONALITY", new print_unique_nationality());
         commands.put("PRINT_FIELD_ASCENDING_PASSPORT_ID", new print_field_ascending_passport_id());
+        commands.put("UPDATEID", new UpdateId());
         commands.put("", new WaitForEmptyInput());
+        commands.put("CLEAR",new Clear());
+        commands.put("EXECUTE SCRIPT",new ExecuteScriptFileName());
     }
 
     public static void enableWordleMode() {
@@ -30,7 +30,7 @@ public class Manager {
 
     public static void unlockInsert() {
         if (!commands.containsKey("INSERT")) {
-            commands.put("INSERT", new Insertnull());
+            commands.put("INSERT", new Insert());
         }
     }
 
@@ -51,10 +51,6 @@ public class Manager {
         }
     }
 
-    /**
-     * Возвращает список всех зарегистрированных команд.
-     * @return Map с командами
-     */
     public static Map<String, Command> getCommands() {
         return commands;
     }

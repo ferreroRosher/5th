@@ -1,22 +1,23 @@
 package Util;
 
-import java.util.Scanner;
 import java.util.NoSuchElementException;
-import java.util.Iterator;
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class CommandScanner {
-    private static boolean isInputMode = false;
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
+    private static boolean insertUnlocked = false;
+    private static boolean wordleMode = false;
 
     public static void startInteractiveMode() {
         System.out.println("Хотите включить режим Wordle для разблокировки скрытой команды? (y/n): ");
         String response = scanner.nextLine().trim().toLowerCase();
+
         if (response.equals("y")) {
             Manager.enableWordleMode();
+            wordleMode = true;
             System.out.println("Режим Wordle активирован! Введите WORDLE, чтобы начать игру.");
         } else {
-            Manager.unlockInsert(); // Разблокируем insert сразу, если Wordle не активирован
+            unlockInsert();
         }
 
         while (true) {
@@ -24,11 +25,29 @@ public class CommandScanner {
             try {
                 String commandLine = readLine();
                 if (commandLine == null) continue;
-                Manager.executeCommand(commandLine);
 
-                if (Manager.getCommands().containsKey("INSERT")) {
-                    Manager.removeCommand("WORDLE");
+                String[] inputs = commandLine.trim().split("\\s+");
+                for (String input : inputs) {
+                    String upper = input.toUpperCase();
+
+                    if (Manager.getCommands().containsKey(upper)) {
+                        if (upper.equals("INSERT") && !insertUnlocked) {
+                            return;
+                        }
+
+                        if (upper.equals("WORDLE") && wordleMode) {
+                            Manager.executeCommand("WORDLE");
+                            Manager.removeCommand("WORDLE");
+                            wordleMode = false;
+                            unlockInsert();
+                            break;
+                        }
+
+                        Manager.executeCommand(upper);
+                        break;
+                    }
                 }
+
             } catch (NoSuchElementException e) {
                 System.out.println();
                 break;
@@ -36,112 +55,40 @@ public class CommandScanner {
         }
     }
 
+    public static String readLine() {
+        if (!scanner.hasNextLine()) return null;
+        return scanner.nextLine()
+                .replace("\\n", " ")
+                .replace("\\t", " ")
+                .replace("\\r", " ")
+                .replaceAll("[\";]", " ")
+                .trim();
+    }
+
+    public static Scanner getScanner() {
+        return scanner;
+    }
+
+    public static void setScanner(Scanner newScanner) {
+        scanner = newScanner;
+    }
+
+    public static void unlockInsert() {
+        insertUnlocked = true;
+    }
+
+    private static boolean inputMode = false;
+
+    public static boolean isInputMode() {
+        return inputMode;
+    }
+
     public static void enableInputMode() {
-        isInputMode = true;
+        inputMode = true;
     }
 
     public static void disableInputMode() {
-        isInputMode = false;
-    }
-
-    public static boolean isInputMode() {
-        return isInputMode;
-    }
-
-    public static String nextLine() {
-        return readLine();
-    }
-
-    private static String readLine() {
-        try {
-            if (!scanner.hasNextLine()) {
-                System.out.println();
-                disableInputMode();
-            }
-            return scanner.nextLine();
-        } catch (NoSuchElementException e) {
-            System.out.println();
-            disableInputMode();
-            return null;
-        }
-    }
-
-    // ======= ВАЛИДИРОВАННЫЙ ВВОД ДАННЫХ =======
-
-    public static String nextValidString(String prompt, Iterator<String> iterator, java.util.function.Predicate<String> validator, String errorMessage) {
-        while (true) {
-            System.out.print(prompt);
-            String input = iterator.hasNext() ? iterator.next() : scanner.nextLine().trim();
-            if (input == null || input.isEmpty()) continue;
-            if (validator.test(input)) return input;
-            System.out.println("Ошибка: " + errorMessage);
-        }
-    }
-
-    public static Integer nextValidInt(String prompt, Iterator<String> iterator, int min, int max) {
-        while (true) {
-            System.out.print(prompt);
-            String input = iterator.hasNext() ? iterator.next() : scanner.nextLine().trim();
-            try {
-                int value = Integer.parseInt(input);
-                if (value >= min && value <= max) return value;
-                System.out.println("Ошибка: значение должно быть от " + min + " до " + max);
-            } catch (NumberFormatException e) {
-                System.out.println("Ошибка: введите целое число.");
-            }
-        }
-    }
-
-    public static Long nextValidLong(String prompt, Iterator<String> iterator, long min) {
-        while (true) {
-            System.out.print(prompt);
-            String input = iterator.hasNext() ? iterator.next() : scanner.nextLine().trim();
-            try {
-                long value = Long.parseLong(input);
-                if (value >= min) return value;
-                System.out.println("Ошибка: число должно быть ≥ " + min);
-            } catch (NumberFormatException e) {
-                System.out.println("Ошибка: введите число.");
-            }
-        }
-    }
-
-    public static Float nextValidFloat(String prompt, Iterator<String> iterator, float min) {
-        while (true) {
-            System.out.print(prompt);
-            String input = iterator.hasNext() ? iterator.next() : scanner.nextLine().trim();
-            try {
-                float value = Float.parseFloat(input);
-                if (value > min) return value;
-                System.out.println("Ошибка: значение должно быть больше " + min);
-            } catch (NumberFormatException e) {
-                System.out.println("Ошибка: введите число.");
-            }
-        }
-    }
-
-    public static Double nextValidDouble(String prompt, Iterator<String> iterator) {
-        while (true) {
-            System.out.print(prompt);
-            String input = iterator.hasNext() ? iterator.next() : scanner.nextLine().trim();
-            try {
-                return Double.parseDouble(input);
-            } catch (NumberFormatException e) {
-                System.out.println("Ошибка: введите корректное число.");
-            }
-        }
-    }
-
-    public static <E extends Enum<E>> E nextValidEnum(String prompt, Iterator<String> iterator, Class<E> enumClass) {
-        while (true) {
-            System.out.print(prompt);
-            String input = iterator.hasNext() ? iterator.next() : scanner.nextLine().trim();
-            try {
-                return Enum.valueOf(enumClass, input.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Ошибка: допустимые значения: " + Arrays.toString(enumClass.getEnumConstants()));
-            }
-        }
+        inputMode = false;
     }
 }
 

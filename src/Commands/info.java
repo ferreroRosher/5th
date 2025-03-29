@@ -11,10 +11,6 @@ public class Info extends AbstractCommand {
         super("info", "Вывести информацию о коллекции");
     }
 
-    /**
-     * Выполняет команду "info".
-     * Отключает режим ввода данных (если был активен) и выводит сведения о коллекции.
-     */
     @Override
     public void execute(String[] args) {
         CommandScanner.disableInputMode(); // Отключаем режим ввода, если был включен

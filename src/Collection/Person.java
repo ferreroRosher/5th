@@ -1,4 +1,5 @@
 package Collection;
+
 import java.time.ZonedDateTime;
 
 /**
@@ -7,39 +8,70 @@ import java.time.ZonedDateTime;
  */
 public class Person implements Comparable<Person> {
     private final Integer id;
-    private final Country nationality;
+    private final String name;
+    private final Coordinates coordinates;
+    private final java.time.LocalDate creationDate;
+    private final long height;
+    private final ZonedDateTime birthday;
     private final String passportID;
+    private final Country nationality;
+    private final Location location;
 
     public Person(Integer id, String name, Coordinates coordinates, long height, ZonedDateTime birthday,
                   String passportID, Country nationality, Location location) {
         this.id = id;
-        this.nationality = nationality;
+        this.name = name;
+        this.coordinates = coordinates;
+        this.creationDate = java.time.LocalDate.now();
+        this.height = height;
+        this.birthday = birthday;
         this.passportID = passportID;
+        this.nationality = nationality;
+        this.location = location;
     }
 
-    /**
-     * Реализация compareTo() для сортировки Person по ID.
-     */
     @Override
     public int compareTo(Person other) {
         return Integer.compare(this.id, other.id);
     }
 
-    public Integer getId() {
-        return id;
+    private static int currentId = 1;
+
+    public static int generateId() {
+        return currentId++;
     }
 
-    /**
-     * Возвращает национальность Person.
-     * @return nationality
-     */
+
+    public String getName() {
+        return name;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public java.time.LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public long getHeight() {
+        return height;
+    }
+
+    public ZonedDateTime getBirthday() {
+        return birthday;
+    }
+
+    public String getPassportID() {
+        return passportID;
+    }
+
     public Country getNationality() {
         return nationality;
     }
-    public String getPassportID() {
-        return passportID;
-    } //вернуть значение паспорта для сортировки (сраная сортировка)
+
+    public Location getLocation() {
+        return location;
+    }
 }
-
-
 

@@ -10,7 +10,7 @@ public class Exit extends AbstractCommand {
     @Override
     public void execute(String[] args) {
         CommandScanner.disableInputMode();
-        System.out.println("Выход из программы...");
+        System.out.println("Directed by.....");
         System.exit(0);
     }
 }

@@ -1,51 +1,128 @@
 package Util;
 
 import Collection.*;
+
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.time.format.DateTimeParseException;
+import java.util.StringTokenizer;
+import java.util.function.DoublePredicate;
+import java.util.function.LongPredicate;
+
+import static Collection.Person.generateId;
+
 
 public class CreatePerson {
-    private static final Set<String> COMMANDS = Set.of("HELP", "INFO", "EXIT", "SHOW", "CLEAR", "REMOVE_KEY");
-    private static int nextId = 1;
 
-    public static Person createPersonFromInput(Scanner scanner) {
-        if (scanner == null) throw new IllegalArgumentException("Ошибка: Scanner не может быть null.");
 
-        System.out.println("Введите данные одной строкой или поочередно:");
-        String inputLine = scanner.nextLine().trim().replace("\\n", " ");
-        List<String> inputs = Arrays.asList(inputLine.split("\\s+"));
-        Iterator<String> iterator = inputs.iterator();
+    public static Person createFromInput() {
+        StringTokenizer tokens = null;
 
-        String name = CommandScanner.nextValidString("Введите имя: ", iterator, s -> !s.isEmpty(), "Имя не может быть пустым.");
+        System.out.println("Введите данные для создания нового Person:");
+        String line = CommandScanner.readLine();
+        assert line != null;
+        tokens = new StringTokenizer(line);
 
-        Integer x = CommandScanner.nextValidInt("Введите координату X (целое число ≤ 369): ", iterator, Integer.MIN_VALUE, 369);
-        Float y = CommandScanner.nextValidFloat("Введите координату Y (вещественное число > -983): ", iterator, -983);
-        Coordinates coordinates = new Coordinates(x, y);
+        String name = getNextValidString("Имя", tokens);
+        Coordinates coordinates = new Coordinates(getNextValidInt("Координата X (целое число ≤ 369)", tokens, x -> x <= 369),
+                getNextValidFloat(tokens, y -> y > -983));
 
-        Long height = CommandScanner.nextValidLong("Введите рост (> 0): ", iterator, 1);
+        long height = getNextValidLong(tokens, h -> h > 0);
+        ZonedDateTime birthday = getNextValidZonedDateTime(tokens);
+        String passportID = getNextValidString("Паспорт ID (от 6 до 33 символов)", tokens, s -> s.length() >= 6 && s.length() <= 33);
+        Country nationality = getNextValidCountry(tokens);
+        Location location = new Location(
+                getNextValidDouble("Локация X (вещественное число)", tokens),
+                getNextValidDouble("Локация Y (вещественное число)", tokens),
+                getNextValidInt("Локация Z (целое число)", tokens, z -> true),
+                getNextValidString("Название локации", tokens)
+        );
 
-        ZonedDateTime birthday = ZonedDateTime.now();
-
-        String passportID = CommandScanner.nextValidString("Введите passport ID (6-33 символов): ", iterator,
-                s -> s.length() >= 6 && s.length() <= 33, "Длина passportID должна быть от 6 до 33 символов.");
-
-        Country nationality = CommandScanner.nextValidEnum("Введите национальность (GERMANY, FRANCE, JAPAN): ", iterator, Country.class);
-
-        Double locX = CommandScanner.nextValidDouble("Введите координату X локации: ", iterator);
-        Double locY = CommandScanner.nextValidDouble("Введите координату Y локации: ", iterator);
-        Integer locZ = CommandScanner.nextValidInt("Введите координату Z локации (целое): ", iterator, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        String locName = CommandScanner.nextValidString("Введите название локации: ", iterator,
-                s -> !s.isEmpty(), "Название локации не может быть пустым.");
-
-        Location location = new Location(locX, locY, locZ, locName);
-
-        CommandScanner.disableInputMode();
-        int id = generateUniqueID();
-        return new Person(id, name, coordinates, height, birthday, passportID, nationality, location);
+        return new Person(generateId(), name, coordinates, height, birthday, passportID, nationality, location);
     }
 
-    public static int generateUniqueID() {
-        return nextId++;
+    private static String getNextValidString(String prompt, StringTokenizer tokens) {
+        return getNextValidString(prompt, tokens, s -> !s.isEmpty());
+    }
+
+    private static String getNextValidString(String prompt, StringTokenizer tokens, java.util.function.Predicate<String> validator) {
+        while (true) {
+            String input = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+            if (input != null && validator.test(input)) return input;
+            System.out.println("Некорректный ввод. " + prompt + ":");
+        }
+    }
+
+    private static int getNextValidInt(String prompt, StringTokenizer tokens, java.util.function.IntPredicate validator) {
+        while (true) {
+            try {
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                assert token != null;
+                int value = Integer.parseInt(token);
+                if (validator.test(value)) return value;
+            } catch (NumberFormatException ignored) {}
+            System.out.println("Некорректный ввод. " + prompt + ":");
+        }
+    }
+
+    private static float getNextValidFloat(StringTokenizer tokens, DoublePredicate validator) {
+        while (true) {
+            try {
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                assert token != null;
+                float value = Float.parseFloat(token);
+                if (validator.test(value)) return value;
+            } catch (NumberFormatException ignored) {}
+            System.out.println("Некорректный ввод. " + "Координата Y (вещественное число > -983)" + ":");
+        }
+    }
+
+    private static long getNextValidLong(StringTokenizer tokens, LongPredicate validator) {
+        while (true) {
+            try {
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                assert token != null;
+                long value = Long.parseLong(token);
+                if (validator.test(value)) return value;
+            } catch (NumberFormatException ignored) {}
+            System.out.println("Некорректный ввод. " + "Рост (целое число > 0)" + ":");
+        }
+    }
+
+    private static double getNextValidDouble(String prompt, StringTokenizer tokens) {
+        while (true) {
+            try {
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                assert token != null;
+                return Double.parseDouble(token);
+            } catch (NumberFormatException ignored) {
+                System.out.println("Некорректный ввод. " + prompt + ":");
+            }
+        }
+    }
+
+    private static ZonedDateTime getNextValidZonedDateTime(StringTokenizer tokens) {
+        while (true) {
+            try {
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                assert token != null;
+                return ZonedDateTime.parse(token);
+            } catch (DateTimeParseException e) {
+                System.out.println("Некорректная дата. " + "Дата рождения (в формате 2000-01-01T12:00:00+03:00)" + ":");
+            }
+        }
+    }
+
+    private static Country getNextValidCountry(StringTokenizer tokens) {
+        while (true) {
+            try {
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                assert token != null;
+                return Country.valueOf(token.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Неизвестная страна. " + "Национальность (GERMANY, FRANCE, JAPAN)" + ":");
+            }
+        }
     }
 }
+
 

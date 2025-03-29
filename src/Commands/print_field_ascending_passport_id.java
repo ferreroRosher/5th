@@ -12,10 +12,8 @@ public class print_field_ascending_passport_id extends AbstractCommand {
         super("print_field_ascending_passport_id", "Вывести значения поля passportID всех элементов в порядке возрастания");
     }
 
-    /**
-     * Выполняет команду "print_field_ascending_passport_id".
-     * Выводит все passportID в порядке возрастания.
-     */
+    //Должно вывести все passportID в порядке возрастания.
+
     @Override
     public void execute(String[] args) {
         CommandScanner.disableInputMode();

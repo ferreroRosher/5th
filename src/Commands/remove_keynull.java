@@ -4,9 +4,6 @@ import Util.CollectionManager;
 import Util.CommandScanner;
 import java.util.Scanner;
 
-/**
- * Команда "remove_key" - удаляет элемент из коллекции по его id.
- */
 public class remove_keynull extends AbstractCommand {
     public remove_keynull() {
         super("remove_key", "Удалить элемент из коллекции по ключу (id)");

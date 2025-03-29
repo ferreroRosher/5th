@@ -20,13 +20,13 @@ public class remove_lower_key extends AbstractCommand {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите объект Person, относительно которого будут удалены элементы:");
-        Person person = CreatePerson.createPersonFromInput(scanner);
+        //Person person = CreatePerson.createPersonFromInput(scanner);
 
-        int removedCount = CollectionManager.removeLower(person);
-        if (removedCount > 0) {
-            System.out.println("Удалено элементов: " + removedCount);
-        } else {
-            System.out.println("Нет элементов, меньших чем заданный.");
-        }
+       // int removedCount = CollectionManager.removeLower(person);
+        //if (removedCount > 0) {
+      //      System.out.println("Удалено элементов: " + removedCount);
+      //  } else {
+         //   System.out.println("Нет элементов, меньших чем заданный.");
+     //   }
     }
 }
