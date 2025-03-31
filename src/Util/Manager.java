@@ -18,11 +18,12 @@ public class Manager {
         commands.put("REMOVEGREATERKEY", new RemoveGreaterKey());
         commands.put("FILTERLESSTHANNATIONALITY", new FilterLessThanNationality());
         commands.put("PRINTUNIQUENATIONALITY", new PrintUniqueNationality());
-        commands.put("PRINTFIELDASCENDINGPASSPORT_ID", new print_field_ascending_passport_id());
+        commands.put("PRINTFIELDASCENDINGPASSPORT_ID", new PrintFieldAscendingPassportId());
         commands.put("UPDATEID", new UpdateId());
         commands.put("", new WaitForEmptyInput());
         commands.put("CLEAR", new Clear());
         commands.put("EXECUTESCRIPT", new ExecuteScriptFileName());
+        commands.put("SAVE", new Save());
     }
 
     public static void enableWordleMode() {

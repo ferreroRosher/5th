@@ -1,4 +1,5 @@
 import Util.CommandScanner;
+import Util.FileManager;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,5 +12,6 @@ public class Main {
         // Главный класс - точка входа в программу
         System.out.println("Введите 'help' для списка команд");
         CommandScanner.startInteractiveMode();
+        FileManager.setFilePath(args[0]);
     }
 }

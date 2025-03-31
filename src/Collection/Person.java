@@ -73,5 +73,7 @@ public class Person implements Comparable<Person> {
     public Location getLocation() {
         return location;
     }
+    //геттеры
+
 }
 

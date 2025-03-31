@@ -23,13 +23,6 @@ public class CollectionManager {
                 .collect(Collectors.toList());
     }
 
-    public static List<String> getSortedPassportID() {
-        return personCollection.values().stream()
-                .map(Person::getPassportID) // Извлекаем passportID
-                .sorted() // Сортируем по алфавиту
-                .collect(Collectors.toList());
-    }
-
 
     // Дата инициализации коллекции
     private static final LocalDateTime initializationDate = LocalDateTime.now();

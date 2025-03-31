@@ -24,9 +24,10 @@ public class Location {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
+    public double getX() { return x; }
+    public Double getY() { return y; }
+    public Integer getZ() { return z; }
+    public String getName() { return name; }
 
     @Override
     public String toString() {
