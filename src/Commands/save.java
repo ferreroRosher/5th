@@ -1,4 +1,4 @@
 package Commands;
 
-public class save {
+public class Save {
 }

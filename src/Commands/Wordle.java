@@ -1,6 +1,7 @@
 package Commands;
 
 import Util.Manager;
+
 import java.util.Scanner;
 
 public class Wordle extends AbstractCommand {

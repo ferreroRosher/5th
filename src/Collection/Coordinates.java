@@ -5,15 +5,10 @@ package Collection;
     private float y; //Значение поля должно быть больше -983
 }*/
 
-/**
- * @param x ≤ 369, не null
- * @param y > -983
- */
 public record Coordinates(Integer x, float y) {
     public Coordinates {
         if (x == null || x > 369) throw new IllegalArgumentException("Координата x должна быть ≤ 369.");
         if (y <= -983) throw new IllegalArgumentException("Координата y должна быть больше -983.");
-
     }
 
     @Override

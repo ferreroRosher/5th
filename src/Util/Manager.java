@@ -1,6 +1,7 @@
 package Util;
 
 import Commands.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,16 +13,16 @@ public class Manager {
         commands.put("INFO", new Info());
         commands.put("EXIT", new Exit());
         commands.put("SHOW", new Show());
-        commands.put("REMOVE_KEY", new remove_keynull());
+        commands.put("REMOVEKEY", new RemoveKey());
         commands.put("REMOVELOWERKEY", new RemoveLower());
-        commands.put("REMOVE_GREATER_KEY", new remove_greater_key());
-        commands.put("FILTER_LESS_THAN_NATIONALITY", new filter_less_than_nationality());
-        commands.put("PRINT_UNIQUE_NATIONALITY", new print_unique_nationality());
-        commands.put("PRINT_FIELD_ASCENDING_PASSPORT_ID", new print_field_ascending_passport_id());
+        commands.put("REMOVEGREATERKEY", new RemoveGreaterKey());
+        commands.put("FILTERLESSTHANNATIONALITY", new FilterLessThanNationality());
+        commands.put("PRINTUNIQUENATIONALITY", new PrintUniqueNationality());
+        commands.put("PRINTFIELDASCENDINGPASSPORT_ID", new print_field_ascending_passport_id());
         commands.put("UPDATEID", new UpdateId());
         commands.put("", new WaitForEmptyInput());
-        commands.put("CLEAR",new Clear());
-        commands.put("EXECUTE SCRIPT",new ExecuteScriptFileName());
+        commands.put("CLEAR", new Clear());
+        commands.put("EXECUTESCRIPT", new ExecuteScriptFileName());
     }
 
     public static void enableWordleMode() {

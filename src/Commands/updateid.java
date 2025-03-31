@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 public class UpdateId extends AbstractCommand {
 
     public UpdateId() {
-        super("update_id", "Обновить значение элемента коллекции, id которого равен заданному");
+        super("UpdateId", "Обновить значение элемента коллекции, id которого равен заданному");
     }
 
     @Override

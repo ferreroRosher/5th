@@ -14,7 +14,7 @@ public class Clear extends AbstractCommand {
             System.out.println("Коллекция уже пуста.");
         } else {
             CollectionManager.clear();
-            System.out.println("✅ Коллекция успешно очищена.");
+            System.out.println("Коллекция успешно очищена.");
         }
     }
 }

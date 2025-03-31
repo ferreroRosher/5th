@@ -23,10 +23,11 @@ public class CommandScanner {
         while (true) {
             System.out.print("> ");
             try {
-                String commandLine = readLine();
+                String commandLine = readLine("Введите ключ:");
                 if (commandLine == null) continue;
 
                 String[] inputs = commandLine.trim().split("\\s+");
+                boolean recognized = false;
                 for (String input : inputs) {
                     String upper = input.toUpperCase();
 
@@ -39,13 +40,20 @@ public class CommandScanner {
                             Manager.executeCommand("WORDLE");
                             Manager.removeCommand("WORDLE");
                             wordleMode = false;
+                            recognized = true;
                             unlockInsert();
                             break;
                         }
 
+
                         Manager.executeCommand(upper);
+                        recognized = true;
                         break;
+
                     }
+                }
+                if (!recognized && !isInputMode()) {
+                    System.out.println("Неизвестная команда. Введите 'help' для списка доступных команд.");
                 }
 
             } catch (NoSuchElementException e) {
@@ -55,7 +63,7 @@ public class CommandScanner {
         }
     }
 
-    public static String readLine() {
+    public static String readLine(String s) {
         if (!scanner.hasNextLine()) return null;
         return scanner.nextLine()
                 .replace("\\n", " ")

@@ -18,7 +18,7 @@ public class CreatePerson {
         StringTokenizer tokens = null;
 
         System.out.println("Введите данные для создания нового Person:");
-        String line = CommandScanner.readLine();
+        String line = CommandScanner.readLine("Введите ключ:");
         assert line != null;
         tokens = new StringTokenizer(line);
 
@@ -46,7 +46,7 @@ public class CreatePerson {
 
     private static String getNextValidString(String prompt, StringTokenizer tokens, java.util.function.Predicate<String> validator) {
         while (true) {
-            String input = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+            String input = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine("Введите ключ:");
             if (input != null && validator.test(input)) return input;
             System.out.println("Некорректный ввод. " + prompt + ":");
         }
@@ -55,11 +55,12 @@ public class CreatePerson {
     private static int getNextValidInt(String prompt, StringTokenizer tokens, java.util.function.IntPredicate validator) {
         while (true) {
             try {
-                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine("Введите ключ:");
                 assert token != null;
                 int value = Integer.parseInt(token);
                 if (validator.test(value)) return value;
-            } catch (NumberFormatException ignored) {}
+            } catch (NumberFormatException ignored) {
+            }
             System.out.println("Некорректный ввод. " + prompt + ":");
         }
     }
@@ -67,11 +68,12 @@ public class CreatePerson {
     private static float getNextValidFloat(StringTokenizer tokens, DoublePredicate validator) {
         while (true) {
             try {
-                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine("Введите ключ:");
                 assert token != null;
                 float value = Float.parseFloat(token);
                 if (validator.test(value)) return value;
-            } catch (NumberFormatException ignored) {}
+            } catch (NumberFormatException ignored) {
+            }
             System.out.println("Некорректный ввод. " + "Координата Y (вещественное число > -983)" + ":");
         }
     }
@@ -79,11 +81,12 @@ public class CreatePerson {
     private static long getNextValidLong(StringTokenizer tokens, LongPredicate validator) {
         while (true) {
             try {
-                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine("Введите ключ:");
                 assert token != null;
                 long value = Long.parseLong(token);
                 if (validator.test(value)) return value;
-            } catch (NumberFormatException ignored) {}
+            } catch (NumberFormatException ignored) {
+            }
             System.out.println("Некорректный ввод. " + "Рост (целое число > 0)" + ":");
         }
     }
@@ -91,7 +94,7 @@ public class CreatePerson {
     private static double getNextValidDouble(String prompt, StringTokenizer tokens) {
         while (true) {
             try {
-                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine("Введите ключ:");
                 assert token != null;
                 return Double.parseDouble(token);
             } catch (NumberFormatException ignored) {
@@ -103,7 +106,7 @@ public class CreatePerson {
     private static ZonedDateTime getNextValidZonedDateTime(StringTokenizer tokens) {
         while (true) {
             try {
-                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine("Введите ключ:");
                 assert token != null;
                 return ZonedDateTime.parse(token);
             } catch (DateTimeParseException e) {
@@ -115,7 +118,7 @@ public class CreatePerson {
     private static Country getNextValidCountry(StringTokenizer tokens) {
         while (true) {
             try {
-                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine();
+                String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine("Введите ключ:");
                 assert token != null;
                 return Country.valueOf(token.toUpperCase());
             } catch (IllegalArgumentException e) {

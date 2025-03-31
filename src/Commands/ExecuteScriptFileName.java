@@ -1,4 +1,5 @@
 package Commands;
+
 import Util.CommandScanner;
 
 import java.io.*;
@@ -11,7 +12,7 @@ public class ExecuteScriptFileName extends AbstractCommand {
     private static final Set<String> executedScripts = new HashSet<>();
 
     public ExecuteScriptFileName() {
-        super("execute_script", "Считать и исполнить скрипт из указанного файла");
+        super("ExecuteScript", "Считать и исполнить скрипт из указанного файла");
     }
 
     @Override

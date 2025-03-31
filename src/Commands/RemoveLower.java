@@ -4,6 +4,7 @@ import Collection.Person;
 import Util.CollectionManager;
 import Util.CommandScanner;
 import Util.CreatePerson;
+
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
@@ -11,7 +12,7 @@ import java.util.LinkedHashMap;
 public class RemoveLower extends AbstractCommand {
 
     public RemoveLower() {
-        super("remove lower", "Удалить из коллекции все элементы, меньшие, чем заданный");
+        super("RemoweLower", "Удалить из коллекции все элементы, меньшие, чем заданный");
     }
 
     @Override

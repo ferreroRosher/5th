@@ -5,13 +5,10 @@ import Util.CollectionManager;
 
 import java.util.Map;
 
-/**
- * Команда Show — выводит все элементы коллекции в строковом представлении.
- */
 public class Show extends AbstractCommand {
 
     public Show() {
-        super("show", "Вывести в стандартный поток вывода все элементы коллекции");
+        super("Show", "Вывести в стандартный поток вывода все элементы коллекции");
     }
 
     @Override

@@ -15,12 +15,14 @@ public class CollectionManager {
     // Коллекция для хранения объектов Person, ключ - уникальный ID
     private static final Map<Integer, Person> personCollection = new LinkedHashMap<>();
     private static int nextId = 1;
+
     // Уникальный идентификатор для новых элементов
     public static List<Person> filterLessThanNationality(Country nationality) {
         return personCollection.values().stream()
                 .filter(person -> person.getNationality().isLessThan(nationality)) //Используем метод из Country
                 .collect(Collectors.toList());
     }
+
     public static List<String> getSortedPassportID() {
         return personCollection.values().stream()
                 .map(Person::getPassportID) // Извлекаем passportID
@@ -43,6 +45,7 @@ public class CollectionManager {
         }
         return false;
     }
+
     public static int removeLower(Person person) {
         List<Person> toRemove = personCollection.values().stream()
                 .filter(p -> p.compareTo(person) < 0)
@@ -51,6 +54,7 @@ public class CollectionManager {
         toRemove.forEach(personCollection::remove);
         return toRemove.size();
     }
+
     public static int removeGreaterKey(int key) {
         List<Integer> toRemove = personCollection.keySet().stream()
                 .filter(id -> id > key)

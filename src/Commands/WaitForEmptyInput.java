@@ -22,7 +22,7 @@ public class WaitForEmptyInput extends AbstractCommand {
         emptyInputCount = 0;
 
         while (CommandScanner.isInputMode()) {
-            String input = CommandScanner.readLine().trim();
+            String input = CommandScanner.readLine("Введите ключ:").trim();
 
             if (!input.isEmpty()) {
                 System.out.println("");
@@ -42,18 +42,18 @@ public class WaitForEmptyInput extends AbstractCommand {
     private void performEmptyInputAction() {
         System.out.println(
                 "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS" +
-                "SUS");
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS" +
+                        "SUS");
 
 
         File gifFile = new File("C:\\Users\\User\\IdeaProjects\\5th\\src\\among-us-twerk-among-us.gif"); // Укажите путь к вашему файлу
