@@ -15,7 +15,8 @@ public class CollectionManager {
     // Коллекция для хранения объектов Person, ключ - уникальный ID
     private static final Map<Integer, Person> personCollection = new LinkedHashMap<>();
     private static int nextId = 1;
-
+    private static LinkedHashMap<Integer, Person> collection = new LinkedHashMap<>();
+    private static LocalDateTime initializationTime = LocalDateTime.now();
     // Уникальный идентификатор для новых элементов
     public static List<Person> filterLessThanNationality(Country nationality) {
         return personCollection.values().stream()
@@ -47,6 +48,11 @@ public class CollectionManager {
         toRemove.forEach(personCollection::remove);
         return toRemove.size();
     }
+    public static void setCollection(LinkedHashMap<Integer, Person> newCollection) {
+        collection = newCollection;
+        initializationTime = LocalDateTime.now(); // или LocalDateTime.now()
+    }
+
 
     public static int removeGreaterKey(int key) {
         List<Integer> toRemove = personCollection.keySet().stream()

@@ -1,6 +1,5 @@
 import Util.CommandScanner;
 import Util.FileManager;
-
 public class Main {
     public static void main(String[] args) {
         /* Scanner scanner = new Scanner(System.in);
@@ -9,9 +8,13 @@ public class Main {
         // Читаем строку из ввода
         System.out.println("Hello world! " + name);
          */
-        // Главный класс - точка входа в программу
         System.out.println("Введите 'help' для списка команд");
         CommandScanner.startInteractiveMode();
-        FileManager.setFilePath(args[0]);
+        if (args.length > 0) {
+            FileManager.setFilePath(args[0]);
+            FileManager.loadCollectionFromXml();
+        } else {
+            System.out.println("Укажите путь к XML-файлу как аргумент командной строки.");
+        }
     }
 }
