@@ -22,7 +22,12 @@ public class WaitForEmptyInput extends AbstractCommand {
         emptyInputCount = 0;
 
         while (CommandScanner.isInputMode()) {
-            String input = CommandScanner.readLine("Введите ключ:").trim();
+            String input = CommandScanner.readLine("Введите ключ:");
+            if (input == null) {
+                System.out.println("Ввод прерван (EOF).");
+                return;
+            }
+            input = input.trim();
 
             if (!input.isEmpty()) {
                 System.out.println("");
@@ -56,7 +61,7 @@ public class WaitForEmptyInput extends AbstractCommand {
                         "SUS");
 
 
-        File gifFile = new File("C:\\Users\\User\\IdeaProjects\\5th\\src\\among-us-twerk-among-us.gif"); // Укажите путь к вашему файлу
+        File gifFile = new File("C:\\Users\\User\\IdeaProjects\\5th\\src\\among-us-twerk-among-us.gif"); // Путь к файлу
 
         if (gifFile.exists()) {
             try {

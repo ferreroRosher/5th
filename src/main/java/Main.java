@@ -1,5 +1,9 @@
+import Util.CollectionManager;
 import Util.CommandScanner;
 import Util.FileManager;
+
+import java.util.LinkedHashMap;
+
 public class Main {
     public static void main(String[] args) {
         /* Scanner scanner = new Scanner(System.in);
@@ -8,13 +12,14 @@ public class Main {
         // Читаем строку из ввода
         System.out.println("Hello world! " + name);
          */
-        System.out.println("Введите 'help' для списка команд");
-        CommandScanner.startInteractiveMode();
         if (args.length > 0) {
             FileManager.setFilePath(args[0]);
             FileManager.loadCollectionFromXml();
         } else {
-            System.out.println("Укажите путь к XML-файлу как аргумент командной строки.");
+            System.out.println("Путь к XML-файлу не передан. Коллекция будет создана пустой.");
+            CollectionManager.setCollection(new LinkedHashMap<>());
         }
+
+        CommandScanner.startInteractiveMode();
     }
 }

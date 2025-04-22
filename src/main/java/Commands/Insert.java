@@ -13,10 +13,12 @@ public class Insert extends AbstractCommand {
 
     @Override
     public void execute(String[] args) {
-        CommandScanner.disableInputMode(); // на всякий случай
+        CommandScanner.enableInputMode(); // включаем защиту от случайных команд
 
         Person person = CreatePerson.createFromInput();
+
+        CommandScanner.disableInputMode(); // выключаем ТОЛЬКО после успешного ввода
         CollectionManager.addPerson(person);
-        System.out.println("Person успешно добавлен в коллекцию. ");
+        System.out.println("Person успешно добавлен в коллекцию.");
     }
 }

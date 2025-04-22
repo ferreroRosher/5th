@@ -2,6 +2,7 @@ package Commands;
 
 import Collection.Person;
 import Util.CollectionManager;
+import Util.IdGenerator;
 
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class Show extends AbstractCommand {
         for (Map.Entry<Integer, Person> entry : CollectionManager.getCollection().entrySet()) {
             Person p = entry.getValue();
             System.out.println("==== Элемент #" + entry.getKey() + " ====");
-            System.out.println("ID: " + Person.generateId());
+            System.out.println("ID: " + IdGenerator.generateId());
             System.out.println("Имя: " + p.getName());
             System.out.println("Координаты: " + p.getCoordinates());
             System.out.println("Рост: " + p.getHeight());

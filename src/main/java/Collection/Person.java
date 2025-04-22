@@ -1,4 +1,5 @@
 package Collection;
+import Util.IdGenerator;
 
 import java.time.ZonedDateTime;
 
@@ -28,19 +29,13 @@ public class Person implements Comparable<Person> {
         this.passportID = passportID;
         this.nationality = nationality;
         this.location = location;
+
     }
 
     @Override
     public int compareTo(Person other) {
         return Integer.compare(this.id, other.id);
     }
-
-    private static int currentId = 1;
-
-    public static int generateId() {
-        return currentId++;
-    }
-
 
     public String getName() {
         return name;
@@ -73,6 +68,9 @@ public class Person implements Comparable<Person> {
     public Location getLocation() {
         return location;
     }
+    public Integer getId() {
+        return id;
+    } //Найти в коде, где-то уже был
     //геттеры
 
 }

@@ -18,7 +18,7 @@ public class Manager {
         commands.put("REMOVEGREATERKEY", new RemoveGreaterKey());
         commands.put("FILTERLESSTHANNATIONALITY", new FilterLessThanNationality());
         commands.put("PRINTUNIQUENATIONALITY", new PrintUniqueNationality());
-        commands.put("PRINTFIELDASCENDINGPASSPORT_ID", new PrintFieldAscendingPassportId());
+        commands.put("PRINTFIELDASCENDINGPASSPORTID", new PrintFieldAscendingPassportId());
         commands.put("UPDATEID", new UpdateId());
         commands.put("", new WaitForEmptyInput());
         commands.put("CLEAR", new Clear());

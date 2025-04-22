@@ -3,9 +3,6 @@ package Commands;
 import Util.CommandScanner;
 import Util.CollectionManager;
 
-/**
- * Команда "info" - выводит информацию о коллекции.
- */
 public class Info extends AbstractCommand {
     public Info() {
         super("info", "Вывести информацию о коллекции");

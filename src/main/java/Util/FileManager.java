@@ -42,7 +42,7 @@ public class FileManager {
     public static String convertPersonToXml(Person person, Integer key) {
         StringBuilder xml = new StringBuilder();
         xml.append("  <person key=\"").append(key).append("\">\n");
-        xml.append("    <id>").append(person.generateId()).append("</id>\n");
+        xml.append("    <id>").append(person.getId()).append("</id>\n");
         xml.append("    <name>").append(person.getName()).append("</name>\n");
         xml.append("    <coordinates>\n");
         xml.append("      <x>").append(person.getCoordinates().getX()).append("</x>\n");
@@ -125,6 +125,12 @@ public class FileManager {
 
             CollectionManager.setCollection(collection);
             System.out.println("Коллекция загружена из файла.");
+            int maxId = collection.values().stream()
+                    .mapToInt(Person::getId)
+                    .max()
+                    .orElse(0);
+
+            IdGenerator.setStartId(maxId);
 
         } catch (Exception e) {
             System.out.println("Ошибка при загрузке: " + e.getMessage());

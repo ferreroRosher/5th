@@ -4,8 +4,8 @@ import Collection.Person;
 import Util.CollectionManager;
 import Util.CommandScanner;
 import Util.CreatePerson;
-
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class UpdateId extends AbstractCommand {
 
@@ -23,8 +23,17 @@ public class UpdateId extends AbstractCommand {
         try {
             int id = Integer.parseInt(args[0]);
             LinkedHashMap<Integer, Person> collection = (LinkedHashMap<Integer, Person>) CollectionManager.getCollection();
+            Person toUpdate = null;
+            Integer foundKey = null;
 
-            Person toUpdate = collection.get(id);
+            for (Map.Entry<Integer, Person> entry : collection.entrySet()) {
+                if (entry.getValue().getId() == id) {
+                    toUpdate = entry.getValue();
+                    foundKey = entry.getKey();
+                    break;
+                }
+            }
+
             if (toUpdate == null) {
                 System.out.println("Элемент с таким ID не найден.");
                 return;
@@ -34,8 +43,7 @@ public class UpdateId extends AbstractCommand {
             Person updatedPerson = CreatePerson.createFromInput();
             CommandScanner.disableInputMode();
 
-            // заменяем по ключу
-            collection.put(id, updatedPerson);
+            collection.put(foundKey, updatedPerson);
             System.out.println("Элемент успешно обновлён.");
 
         } catch (NumberFormatException e) {
