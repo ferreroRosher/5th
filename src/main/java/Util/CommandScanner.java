@@ -9,6 +9,7 @@ public class CommandScanner {
     private static boolean wordleMode = false;
     private static boolean inputMode = false;
     public static void startInteractiveMode() {
+
         if (scanner == null) scanner = defaultScanner;
         if (scanner == defaultScanner) {
             System.out.println("Хотите включить режим Wordle для разблокировки скрытой команды? (y/n): ");
@@ -32,7 +33,12 @@ public class CommandScanner {
                 }
 
                 String commandLine = scanner.nextLine().trim();
-                if (commandLine.isEmpty()) continue;
+                if (commandLine.isEmpty()) {
+                    if (!isInputMode() && Manager.getCommands().containsKey("")) {
+                        Manager.executeCommand("");
+                    }
+                    continue;
+                }
 
                 // Если сейчас режим ввода — команды не обрабатываем
                 if (isInputMode()) {
@@ -109,6 +115,7 @@ public class CommandScanner {
     public static void disableInputMode() {
         inputMode = false;
     }
+
 }
 
 

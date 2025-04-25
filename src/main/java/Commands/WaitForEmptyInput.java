@@ -17,28 +17,31 @@ public class WaitForEmptyInput extends AbstractCommand {
 
     @Override
     public void execute(String[] args) {
-        System.out.println("");
+        System.out.println();
         CommandScanner.enableInputMode();
         emptyInputCount = 0;
 
         while (CommandScanner.isInputMode()) {
-            String input = CommandScanner.readLine("Введите ключ:");
+            String input = CommandScanner.readLine("");
             if (input == null) {
                 System.out.println("Ввод прерван (EOF).");
+                CommandScanner.disableInputMode();
                 return;
             }
+
             input = input.trim();
 
             if (!input.isEmpty()) {
-                System.out.println("");
+                System.out.println();
                 CommandScanner.disableInputMode();
-                Manager.executeCommand(input); // Выполняем найденную команду
+                Manager.executeCommand(input);
                 return;
             }
 
             emptyInputCount++;
             if (emptyInputCount >= MAX_EMPTY_INPUTS) {
                 performEmptyInputAction();
+                CommandScanner.disableInputMode(); // 🔧 обязательно
                 return;
             }
         }
@@ -47,18 +50,18 @@ public class WaitForEmptyInput extends AbstractCommand {
     private void performEmptyInputAction() {
         System.out.println(
                 "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS" +
-                        "SUS");
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS" +
+                        "\nSUS");
 
 
         File gifFile = new File("C:\\Users\\User\\IdeaProjects\\5th\\src\\among-us-twerk-among-us.gif"); // Путь к файлу
