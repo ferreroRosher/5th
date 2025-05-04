@@ -12,7 +12,7 @@ remove_key 2
 remove_lower
 Игорь 120 240 175 POIUYT JAPAN 1.1 1.1 1 Башня
 show
-print_unique_nationality
-print_field_ascending_passport_i_d
+printuniquenationality
+printfieldascendingpassportid
 save
 exit
