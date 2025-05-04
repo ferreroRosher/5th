@@ -126,7 +126,6 @@ public class CreatePerson {
     private static Country getNextValidCountry(StringTokenizer tokens) {
         while (true) {
             try {
-                System.out.println("Возможные значения: " + java.util.Arrays.toString(Country.values()));
                 String token = tokens != null && tokens.hasMoreTokens() ? tokens.nextToken() : CommandScanner.readLine("Введите национальность:");
                 token = checkInterrupt(token);
                 return Country.valueOf(token.toUpperCase());

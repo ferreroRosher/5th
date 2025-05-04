@@ -1,18 +1,23 @@
 package Commands;
 
 import Util.CommandScanner;
+import Util.Manager;
 
 import java.io.*;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * Команда execute_script.
+ * Считывает и исполняет команды из указанного файла.
+ */
 public class ExecuteScriptFileName extends AbstractCommand {
 
     private static final Set<String> executedScripts = new HashSet<>();
 
     public ExecuteScriptFileName() {
-        super("ExecuteScript", "Считать и исполнить скрипт из указанного файла");
+        super("execute_script", "Считывает и исполняет команды из указанного файла.");
     }
 
     @Override
@@ -25,15 +30,25 @@ public class ExecuteScriptFileName extends AbstractCommand {
         String filePath = args[0];
         File scriptFile = new File(filePath);
 
-        if (!scriptFile.exists() || !scriptFile.canRead()) {
-            System.out.println("Файл не найден или недоступен для чтения: " + filePath);
+        // Выводим реальную рабочую директорию
+        System.out.println("Рабочая директория: " + System.getProperty("user.dir"));
+
+        if (!scriptFile.isAbsolute()) {
+            scriptFile = new File(System.getProperty("user.dir"), filePath);
+        }
+
+        // Выводим путь, куда реально смотрим
+        System.out.println("Ищу файл по пути: " + scriptFile.getAbsolutePath());
+
+        if (!scriptFile.exists() || !scriptFile.isFile()) {
+            System.out.println("Файл не найден или недоступен для чтения: " + scriptFile.getAbsolutePath());
             return;
         }
 
         try {
             String canonicalPath = scriptFile.getCanonicalPath();
             if (executedScripts.contains(canonicalPath)) {
-                System.out.println("Зацикливание, скрипт остановлен");
+                System.out.println("Зацикливание скриптов обнаружено. Скрипт уже выполняется: " + canonicalPath);
                 return;
             }
 
@@ -44,14 +59,16 @@ public class ExecuteScriptFileName extends AbstractCommand {
 
                 Scanner originalScanner = CommandScanner.getScanner();
                 CommandScanner.setScanner(fileScanner);
+
                 CommandScanner.startInteractiveMode();
+
                 CommandScanner.setScanner(originalScanner);
             }
 
             executedScripts.remove(canonicalPath);
 
         } catch (IOException e) {
-            System.out.println("Ошибка при чтении файла: " + e.getMessage());
+            System.out.println("Ошибка при выполнении скрипта: " + e.getMessage());
         }
     }
 }

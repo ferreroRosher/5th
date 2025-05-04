@@ -1,5 +1,7 @@
 package Collection;
-
+/**
+ * Перечисление возможных национальностей Person.
+ */
 public enum Country {
     GERMANY,
     FRANCE,

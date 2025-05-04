@@ -3,7 +3,10 @@ import Util.CollectionManager;
 import Util.CommandScanner;
 import java.util.Map;
 import java.util.Objects;
-
+/**
+ * Команда Remove_key.
+ * Удаляет элемент коллекции по его ключу.
+ */
 public class RemoveKey extends AbstractCommand {
 
     public RemoveKey() {

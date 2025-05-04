@@ -2,12 +2,18 @@ package Util;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
+/**
+ * Класс для управления режимами ввода команд и объектов.
+ * Отвечает за интерактивный режим работы программы.
+ */
 public class CommandScanner {
     private static final Scanner defaultScanner = new Scanner(System.in);
     private static Scanner scanner = defaultScanner;
     private static boolean wordleMode = false;
     private static boolean inputMode = false;
+    /**
+     * Запускает основной цикл интерактивного режима ввода команд.
+     */
     public static void startInteractiveMode() {
 
         if (scanner == null) scanner = defaultScanner;
@@ -73,7 +79,8 @@ public class CommandScanner {
                 }
 
             } catch (NoSuchElementException e) {
-                System.out.println("\n Завершение по EOF.");
+                System.out.println("Конец ввода. Возвращаемся к стандартному сканеру.");
+                setScanner(new Scanner(System.in));
                 break;
             }
         }
@@ -82,7 +89,12 @@ public class CommandScanner {
     private static String cleanCommand(String input) {
         return input.toUpperCase();
     }
-
+    /**
+     * Считывает строку ввода пользователя с обработкой экранированных символов.
+     *
+     * @param prompt строка-приглашение к вводу
+     * @return введённая строка пользователя
+     */
     public static String readLine(String prompt) {
         if (!scanner.hasNextLine()) return null;
         System.out.print(prompt + " ");
@@ -95,23 +107,35 @@ public class CommandScanner {
                 .replace("_", "")
                 .trim();
     }
-
+    /**
+     * Возвращает активный сканер ввода.
+     */
     public static Scanner getScanner() {
         return scanner;
     }
-
+    /**
+     * Устанавливает активный сканер ввода.
+     *
+     * @param newScanner новый сканер
+     */
     public static void setScanner(Scanner newScanner) {
         scanner = newScanner;
     }
-
+    /**
+     * Проверяет, активен ли режим ввода объекта.
+     */
     public static boolean isInputMode() {
         return inputMode;
     }
-
+    /**
+     * Включает режим ввода объекта.
+     */
     public static void enableInputMode() {
         inputMode = true;
     }
-
+    /**
+     * Выключает режим ввода объекта.
+     */
     public static void disableInputMode() {
         inputMode = false;
     }

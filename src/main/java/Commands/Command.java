@@ -1,7 +1,7 @@
 package Commands;
 
 /**
- * Интерфейс для всех команд.
+ * Интерфейс, представляющий команду.
  */
 public interface Command {
     /**

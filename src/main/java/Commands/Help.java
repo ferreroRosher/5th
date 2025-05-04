@@ -1,7 +1,10 @@
 package Commands;
 
 import Util.Manager;
-
+/**
+ * Команда Help.
+ * Проявляет список всех доступных команд и их описание.
+ */
 public class Help extends AbstractCommand {
     public Help() {
         super("help", "Вывести список доступных команд");

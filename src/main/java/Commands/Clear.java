@@ -1,7 +1,10 @@
 package Commands;
 
 import Util.CollectionManager;
-
+/**
+ * Команда Clear.
+ * Очищает коллекцию.
+ */
 public class Clear extends AbstractCommand {
 
     public Clear() {

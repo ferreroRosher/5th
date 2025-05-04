@@ -6,11 +6,14 @@ import Util.CommandScanner;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
-
+/**
+ * Команда RemoveGreaterKey.
+ * Удаляет все элементы коллекции, ключи которых больше заданного.
+ */
 public class RemoveGreaterKey extends AbstractCommand {
 
     public RemoveGreaterKey() {
-        super("RemoveGreaterKey", "Удалить из коллекции все элементы, ключ которых превышает заданный");
+        super("RemoveGreater", "Удалить из коллекции все элементы, ключ которых превышает заданный");
     }
 
     @Override

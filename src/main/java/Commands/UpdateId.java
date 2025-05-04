@@ -6,7 +6,9 @@ import Util.CommandScanner;
 import Util.CreatePerson;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+/**
+ * Обновляет элемент коллекции по id.
+ */
 public class UpdateId extends AbstractCommand {
 
     public UpdateId() {

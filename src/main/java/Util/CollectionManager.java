@@ -10,7 +10,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+/**
+ * Класс для управления коллекцией объектов Person.
+ * Поддерживает добавление, удаление, обновление элементов.
+ */
 public class CollectionManager {
     // Коллекция для хранения объектов Person, ключ - уникальный ID
     private static final Map<Integer, Person> personCollection = new LinkedHashMap<>();
@@ -27,7 +30,11 @@ public class CollectionManager {
 
     // Дата инициализации коллекции
     private static final LocalDateTime initializationDate = LocalDateTime.now();
-
+    /**
+     * Добавляет объект Person в коллекцию.
+     *
+     * @param person объект для добавления
+     */
     public static void addPerson(Person person) {
         personCollection.put(nextId++, person);
     }
@@ -69,7 +76,9 @@ public class CollectionManager {
                 .sorted()
                 .collect(Collectors.toList());
     } Cортировать человеков, проверить, что исполняется без этого*/
-
+    /**
+     * Возвращает коллекцию Person.
+     */
     public static Map<Integer, Person> getCollection() {
         return personCollection;
     }
@@ -87,7 +96,9 @@ public class CollectionManager {
     public static String getCollectionType() {
         return personCollection.getClass().getSimpleName();
     }
-
+    /**
+     * Очищает коллекцию.
+     */
     public static void clear() {
         personCollection.clear();
         //Должен очищать коллекцию

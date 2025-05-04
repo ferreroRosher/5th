@@ -6,7 +6,9 @@ package Collection;
     private Integer z; //Поле не может быть null
     private String name; //Строка не может быть пустой, Поле не может быть null
 }*/
-
+/**
+ * Класс, представляющий местоположение объекта.
+ */
 public class Location {
     private final double x;
     private final Double y; // Не null

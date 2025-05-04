@@ -6,7 +6,10 @@ import Util.CollectionManager;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
+/**
+ * Команда PrintUniqueNationality.
+ * Выводит уникальные значения поля nationality всех элементов коллекции.
+ */
 public class PrintUniqueNationality extends AbstractCommand {
 
     public PrintUniqueNationality() {

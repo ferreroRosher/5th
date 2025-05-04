@@ -1,0 +1,53 @@
+@options
+@packages
+@argfile
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'C:/Users/User/IdeaProjects/5th/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/User/IdeaProjects/5th/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'5th 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'5th 1.0-SNAPSHOT API'
+Collection
+Commands
+Util
+'C:/Users/User/IdeaProjects/5th/src/main/java/Main.java'
+C:\Users\User\IdeaProjects\5th\src\main\java\Main.java = 1745081660359
+C:\Users\User\IdeaProjects\5th\src\main\java = 1745081660360
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\allclasses-index.html = 1745845619885
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\allpackages-index.html = 1745845619888
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\element-list = 1745845619735
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\help-doc.html = 1745845619918
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\index-all.html = 1745845619912
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\index.html = 1745845619870
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\jquery-ui.overrides.css = 1745845619931
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\Main.html = 1745845619634
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\member-search-index.js = 1745845619893
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\module-search-index.js = 1745845619889
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\overview-summary.html = 1745845619914
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\overview-tree.html = 1745845619866
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\package-search-index.js = 1745845619891
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\package-summary.html = 1745845619743
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\package-tree.html = 1745845619747
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\package-use.html = 1745845619856
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\script.js = 1745845619921
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\search.js = 1745845619923
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\serialized-form.html = 1745845619774
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\stylesheet.css = 1745845619920
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\tag-search-index.js = 1745845619895
+C:\Users\User\IdeaProjects\5th\target\site\apidocs\type-search-index.js = 1745845619892

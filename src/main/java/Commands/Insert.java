@@ -4,7 +4,9 @@ import Collection.Person;
 import Util.CollectionManager;
 import Util.CommandScanner;
 import Util.CreatePerson;
-
+/**
+ * Команда для добавления нового элемента в коллекцию.
+ */
 public class Insert extends AbstractCommand {
 
     public Insert() {

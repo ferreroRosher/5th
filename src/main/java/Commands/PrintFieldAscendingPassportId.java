@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-
+/**
+ * Команда PrintFieldAscendingPassport.
+ * Выводит значения поля passportID всех элементов коллекции в порядке возрастания.
+ */
 public class PrintFieldAscendingPassportId extends AbstractCommand {
 
     public PrintFieldAscendingPassportId() {

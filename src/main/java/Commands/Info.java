@@ -2,7 +2,10 @@ package Commands;
 
 import Util.CommandScanner;
 import Util.CollectionManager;
-
+/**
+ * Команда Info.
+ * Выводит информацию о коллекции: тип, дату инициализации, количество элементов.
+ */
 public class Info extends AbstractCommand {
     public Info() {
         super("info", "Вывести информацию о коллекции");

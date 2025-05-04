@@ -8,7 +8,10 @@ import Util.CreatePerson;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
-
+/**
+ * Команда RemoveLowerKey.
+ * Удаляет все элементы коллекции, ключи которых меньше заданного.
+ */
 public class RemoveLower extends AbstractCommand {
 
     public RemoveLower() {

@@ -10,6 +10,9 @@ import java.time.ZonedDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Класс для загрузки и сохранения коллекции в XML файл.
+ */
 public class FileManager {
     private static String filePath;
 
@@ -20,7 +23,10 @@ public class FileManager {
     public static String getFilePath() {
         return filePath;
     }
-
+    /**
+     * Сохраняет коллекцию в XML файл.
+     *
+     */
     public static void saveCollectionToXml() throws IOException {
         if (filePath == null || filePath.isEmpty()) {
             throw new IOException("Путь к файлу не задан.");

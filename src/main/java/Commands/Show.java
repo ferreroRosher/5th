@@ -5,7 +5,10 @@ import Util.CollectionManager;
 import Util.IdGenerator;
 
 import java.util.Map;
-
+/**
+ * Команда Show.
+ * Выводит все элементы коллекции.
+ */
 public class Show extends AbstractCommand {
 
     public Show() {
